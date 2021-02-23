@@ -27,5 +27,4 @@ while nama != username:
         print("Username Tidak Ada")
         continue
     print('pw salah masukan lagi')
-    
-    print('awkokdoaewkdoeaked'
+    print("How are you?")
