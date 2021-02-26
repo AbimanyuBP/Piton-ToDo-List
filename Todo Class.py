@@ -1,6 +1,7 @@
 class User(object):
-    def __init__(self, name):
+    def __init__(self, name, password):
         self.name = name
+        self.password = password
         self.todoname = []
         self.todoprio = []
         self.tododate = []
@@ -58,6 +59,11 @@ def addemgud(name):
         if e.name == name:
             e.add()
 
+def passchecker(name, inpass):
+     for i, e in enumerate(users_object):
+        if e.name == name:
+            return bool(inpass == e.password)
+
 def menu(moi):
     print("Halo",moi )
     isi = ''
@@ -83,24 +89,28 @@ def identifier(username):
         le = input('Ingin Mendaftar (y/n)?')
         if le == 'y':
             pe = input('Nama anda: ')
-            users_object.append(User(pe))
+            po = input('Password: ')
+            users_object.append(User(pe, po))
             print('Nama anda Sudah Terdaftar!')
             lo = input('Ingin masuk ke todo list anda (y/n)?')
             if lo == 'y':
                 menu(pe)
             elif lo == 'n':
                 print('Baiklah Kembali ke menu login...')
-                mainmenu()
         elif le == 'n':
             print('Aight Im outtie')
         else:
             print('That aint right')
     elif username == search_name(username):
-        menu(username)
+        pw = input('User ditemukan password?: ')
+        if passchecker(username, pw):
+            menu(username)
+        else:
+            print('Password salah kembali ke login')
 
 def mainmenu():
     huha = ''
-    while huha != 'n':
+    while huha != '2':
         print('Selamat datang di aplikasi ToDo list ini')
         huha = input('''Menu
         1.Login
@@ -111,9 +121,9 @@ def mainmenu():
             name_list()
             meong = input('Masukkan Nama User: ')
             identifier(meong)
-        elif huha == 'n':
+        elif huha == '2':
             print('Very Well Goodbye...')
-            break
+            return 0
         else:
             print('Error Command')
 
