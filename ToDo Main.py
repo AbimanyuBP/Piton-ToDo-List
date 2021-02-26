@@ -1,8 +1,12 @@
+import pickle
+import datetime
+
 todo = []
 date = []
 status = []
 s = "Selesai"
 b = "Tidak Selesai"
+filename = "Data Users"
 
 
 def Add():
@@ -11,14 +15,7 @@ def Add():
     todo.append(tsk)
     date.append(tgl)
     status.append(b)
-'''
 
-def Add():
-    tsk = input('tambahkan list todo: ')
-    tgl = input("Tanggal Berapa Deadlinenya?: ")
-    todo["belum sukses"].append(tsk)
-    date["belum sukses"].append(tgl)
-'''
 
 def display():
     l = 0
@@ -36,9 +33,27 @@ def apudeto():
         if m == 'y':
             status[updt-1] = s  
             display()
-            break      
+            break  
 
-print('selamat datang di todolist')
+def save(list_user):
+    outfile = open(filename, 'wb')
+    pickle.dump(list_user, outfile)
+    outfile.close
+
+def load():
+    infile = open(filename, 'rb')
+    loc_user = pickle.load(infile)
+    infile.close
+
+def identifier():
+    users = []
+    print('selamat datang di todolist')
+    curr_user = input('Masukkan Nama User: ')
+
+
+#Driver Code
+
+identifier()
 p = ''
 while p != '4':
     p = input("""MENu
