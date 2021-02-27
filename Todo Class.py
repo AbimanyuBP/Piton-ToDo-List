@@ -137,7 +137,6 @@ def mainmenu():
         huha = input('''Menu
         1.Login
         2.Exit
-        3.Load
         ''')
         if huha == '1':
             print('User Yang Sudah Terdaftar Adalah')
@@ -147,9 +146,6 @@ def mainmenu():
         elif huha == '2':
             print('Very Well Goodbye...')
             return 0
-        elif huha == '3':
-            print('Mencoba load data users...')
-            users_object = load()
         else:
             print('Error Command')
 
