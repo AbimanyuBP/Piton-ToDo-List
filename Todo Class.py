@@ -1,3 +1,5 @@
+import pickle
+
 class User(object):
     def __init__(self, name, password):
         self.name = name
@@ -27,8 +29,10 @@ class User(object):
         print('Data Berhasil Terinput')
 
 users_object = []
+local_users = []
 yo = ''
 p = 0
+filename = "Data Users"
     
 def name_list():
     if users_object:
@@ -63,6 +67,24 @@ def passchecker(name, inpass):
      for i, e in enumerate(users_object):
         if e.name == name:
             return bool(inpass == e.password)
+
+def filecheck():
+    pass
+
+def save(list_user):
+    outfile = open(filename, 'wb')
+    pickle.dump(list_user, outfile)
+    outfile.close
+
+def load():
+    try:
+        infile = open(filename, 'rb')
+        loc_user = pickle.load(infile)
+        infile.close
+        print('Data Successfully Loaded!')
+        return loc_user
+    except:
+        print("Missing Data Users")
 
 def menu(moi):
     print("Halo",moi )
@@ -115,6 +137,7 @@ def mainmenu():
         huha = input('''Menu
         1.Login
         2.Exit
+        3.Load
         ''')
         if huha == '1':
             print('User Yang Sudah Terdaftar Adalah')
@@ -124,8 +147,17 @@ def mainmenu():
         elif huha == '2':
             print('Very Well Goodbye...')
             return 0
+        elif huha == '3':
+            print('Mencoba load data users...')
+            users_object = load()
         else:
             print('Error Command')
 
-    
+try:
+    users_object = load()
+
+except:
+    print('Yah file belum ada...')
 mainmenu()
+print('Menyimpan data users')
+save(users_object)
