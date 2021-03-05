@@ -77,14 +77,11 @@ def save(list_user):
     outfile.close
 
 def load():
-    try:
-        infile = open(filename, 'rb')
-        loc_user = pickle.load(infile)
-        infile.close
-        print('Data Successfully Loaded!')
-        return loc_user
-    except:
-        print("Missing Data Users")
+    infile = open(filename, 'rb')
+    loc_user = pickle.load(infile)
+    infile.close
+    print('Data Successfully Loaded!')
+    return loc_user
 
 def menu(moi):
     print("Halo",moi )
